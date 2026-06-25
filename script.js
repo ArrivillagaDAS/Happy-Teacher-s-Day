@@ -34,11 +34,11 @@ function reveal(fraseId, btnId) {
 
 /* página 1*/
 var bootLines = [
-  '> Cargando módulo: GRATITUD.py ...... OK',
-  '> Importando: paciencia del maestro .. OK',
-  '> Instalando: dedicacion_2024 ....... OK',
-  '> Verificando: lecciones aprendidas .. OK',
-  '> Compilando carta especial ......... OK',
+  '> Cargando módulo: GRATITUD.py ...... 100%',
+  '> Importando: paciencia de nuestros maestros .. 100%',
+  '> Instalando: dedicacion_2026 ....... 100%',
+  '> Verificando: lecciones aprendidas .. 100%',
+  '> Compilando carta especial ......... 100%',
   '',
   '> ¡Sistema listo! Carta lista para enviar.',
 ];
