@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎉 Feliz Día del Maestro</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div id="carta-root">
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="prog" style="width:0%"></div>
+  </div>
+  <div class="nivel-txt" id="nivel-txt">NIVEL 0 / 6</div>
+
+  <!-- PÁGINA 1: Boot -->
+  <div class="page active" id="p1">
+    <div class="titulo-pixel" style="color:#2aff87">// INICIALIZANDO CARTA_MAESTRO.exe</div>
+    <div class="boot-text" id="boot-output"></div>
+    <button class="btn-start" id="btn-start" style="display:none" onclick="goTo(2)">
+    PRESIONAR ENTER PARA CONTINUAR_
+    </button>
+  </div>
+
+  <!-- PÁGINA 2: Encuentra las estrellas -->
+  <div class="page" id="p2">
+    <div class="nivel-badge amarillo">NIVEL 1 — ENCUENTRA LAS ESTRELLAS</div>
+    <div class="titulo-pixel" style="color:#fbbf24;font-size:15px">
+      Hay 5 ⭐ ocultas entre los símbolos<br>¡Encuéntralas todas!
+    </div>
+    <div class="estrellas-grid" id="stars-grid"></div>
+    <div class="contador" id="stars-count">Encontradas: 0 / 5</div>
+    <div class="frase-dia" style="display:none" id="frase2">
+      ✨ <b>Enseñar no es llenar un balde, es encender un fuego.</b><br>
+      Gracias profe por encender en nosotros la pasión por el código.
+    </div>
+    <button class="btn-sig" id="btn2" style="display:none" onclick="goTo(3)">SIGUIENTE NIVEL</button>
+  </div>
+
+  <!-- PÁGINA 3: Acertijo de código -->
+  <div class="page" id="p3">
+    <div class="nivel-badge morado">NIVEL 2 — ACERTIJO DE CÓDIGO</div>
+    <div class="titulo-pixel" style="color:#c4b5fd;font-size:15px">¿Qué imprime este código?</div>
+    <div class="code-block">
+      <span class="kw">def</span> <span class="fn">maestro</span>(n):<br>
+      <span class="kw">if</span> n == <span class="num">0</span>: <span class="kw">return</span> <span class="num">1</span><br>
+      <span class="kw">return</span> n * maestro(n - <span class="num">1</span>)<br><br>
+      <span class="builtin">print</span>(maestro(<span class="num">5</span>))
+    </div>
+    <div class="code-options">
+      <button class="code-opt" onclick="checkRiddle(this, false)">5</button>
+      <button class="code-opt" onclick="checkRiddle(this, true)">120</button>
+      <button class="code-opt" onclick="checkRiddle(this, false)">25</button>
+      <button class="code-opt" onclick="checkRiddle(this, false)">error</button>
+    </div>
+    <div class="frase-dia" style="display:none" id="frase3">
+      💡 <b>Un buen maestro te enseña a pensar, no solo a memorizar.</b><br>
+      Como un recursivo que siempre sabe cuándo detenerse — ¡igual que nuestro profe!
+    </div>
+    <button class="btn-sig" id="btn3" style="display:none" onclick="goTo(4)">SIGUIENTE NIVEL</button>
+  </div>
+
+  <!-- PÁGINA 4: Laberinto -->
+  <div class="page" id="p4">
+    <div class="nivel-badge naranja">NIVEL 3 — EL LABERINTO DEL CÓDIGO</div>
+    <div class="titulo-pixel" style="color:#f59e0b;font-size:14px">Lleva el 🟡 hasta la salida 🏁</div>
+    <canvas id="maze-canvas" width="280" height="280"></canvas>
+    <div class="maze-controls"><button class="maze-dir" onclick="movePlayer(0,-1)">▲</button></div>
+    <div class="maze-controls">
+      <button class="maze-dir" onclick="movePlayer(-1,0)">◄</button>
+      <button class="maze-dir" onclick="movePlayer(0,1)">▼</button>
+      <button class="maze-dir" onclick="movePlayer(1,0)">►</button>
+    </div>
+    <div class="frase-dia" style="display:none" id="frase4">
+      🗺️ <b>Enseñar es mostrar el camino cuando los demás están perdidos.</b><br>
+      Gracias por guiarnos a través del laberinto de la programación, profe.
+    </div>
+    <button class="btn-sig" id="btn4" style="display:none" onclick="goTo(5)">SIGUIENTE NIVEL</button>
+  </div>
+
+  <!-- PÁGINA 5: Simon Dice -->
+  <div class="page" id="p5">
+    <div class="nivel-badge rosa">NIVEL 4 — MEMORIA.EXE</div>
+    <div class="titulo-pixel" style="color:#f472b6;font-size:14px">Repite la secuencia correctamente</div>
+    <div id="simon-msg" class="simon-msg">Espera la secuencia...</div>
+    <div class="seq-btns" id="simon-btns"></div>
+    <div class="frase-dia" style="display:none" id="frase5">
+      🧠 <b>La memoria de un buen maestro vive en sus estudiantes para siempre.</b><br>
+      Sus lecciones quedaron grabadas en nuestra RAM permanente, profe.
+    </div>
+    <button class="btn-sig" id="btn5" style="display:none" onclick="goTo(6)">SIGUIENTE NIVEL</button>
+  </div>
+
+  <!-- PÁGINA 6: Typing -->
+  <div class="page" id="p6">
+    <div class="nivel-badge azul">NIVEL 5 — COMANDO FINAL</div>
+    <div class="titulo-pixel" style="color:#60a5fa;font-size:15px">Escribe el comando más importante:</div>
+    <div class="type-target">GRACIAS</div>
+    <div class="type-hint">— escríbelo tú —</div>
+    <input type="text" id="type-input" placeholder="_ _ _ _ _ _ _" maxlength="7"
+           oninput="checkTyping()" autocomplete="off" spellcheck="false" />
+    <div class="frase-dia" style="display:none" id="frase6">
+      ⌨️ <b>El mejor código que podemos escribir empieza con GRACIAS.</b><br>
+      Gracias profe por compilar paciencia, conocimiento y dedicación en cada clase.
+    </div>
+    <button class="btn-sig" id="btn6" style="display:none" onclick="goTo(7)">VER MENSAJE FINAL</button>
+  </div>
+
+  <!-- PÁGINA FINAL -->
+  <div class="page" id="pfinal">
+    <div id="confetti-container"></div>
+    <div class="titulo-pixel titulo-final">🎉 ¡FELIZ DÍA DEL MAESTRO! 🎉</div>
+    <div class="emoji-profe">👨‍💻</div>
+    <div class="frase-dia frase-final">
+      <b>// A nuestro profe de programación:</b><br><br>
+      Por cada bug que nos ayudó a debuggear,<br>
+      por cada loop infinito de dudas que soportó,<br>
+      por cada función que nos enseñó a construir...<br><br>
+      <span style="color:#fbbf24">Hoy el código nos une para decirte:</span><br>
+      <b class="gracias-text">¡GRACIAS, PROFE! 🚀</b>
+    </div>
+    <div class="estrellas-final">⭐ ⭐ ⭐ ⭐ ⭐</div>
+    <div class="firma">// END OF FILE — Tus estudiantes 💙</div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
